@@ -1,0 +1,63 @@
+.containt_button {
+    border-radius: 40px !important;
+    padding: 15px 40px !important;
+    color: #FFF !important;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    width: fit-content;
+    background-color: #2d426e !important;
+    border: none !important;
+}
+
+.outline_button {
+    border-radius: 40px !important;
+    padding: 15px 40px !important;
+    color: #2d426e !important;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    width: fit-content;
+    background-color: transparent !important;
+    border: 1px solid #2d426e !important; 
+}
+
+.header_main{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.body_main{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 15px;
+    border-radius: 1px;
+}
+
+.action_main{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.action_main button {
+    width: fit-content !important;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.card_title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 10px 0px;
+}
