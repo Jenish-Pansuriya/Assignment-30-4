@@ -65,9 +65,13 @@ const Managebeneficiary = () => {
 
     const validation = (data) => {
         let regex = /^[0-9,.]+$/
+        let onlyAlphanumeric = /^[A-Za-z0-9\s'-]+$/
         let err = false
         if (!data.name) {
             setError('name', { type: 'manual', message: 'Please enter name.' });
+            err = true
+        } else if (data.name && !onlyAlphanumeric.test(data.name)) {
+            setError('name', { type: 'manual', message: 'Please enter a valid name without special characters' });
             err = true
         }
         if (!data.accountNo || data.accountNo < 1) {
