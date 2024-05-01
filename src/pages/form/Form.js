@@ -47,8 +47,12 @@ const Form = () => {
 
     const validation = (data) => {
         let err = false
+        let onlyAlphanumeric = /^[A-Za-z0-9\s'-]+$/
         if (!data.fullName) {
             setError('fullName', { type: 'manual', message: 'Please enter fullname.' });
+            err = true
+        } else if (data.fullName && !onlyAlphanumeric.test(data.fullName)) {
+            setError('fullName', { type: 'manual', message: 'Please enter a valid name without special characters' });
             err = true
         }
         if (!data.address) {
@@ -125,7 +129,7 @@ const Form = () => {
                     <table className="table">
                         <thead className="thead-light">
                             <tr>
-                                <th scope="col">Name</th>
+                                <th scope="col">Full Name</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Country</th>
                                 <th scope="col">Pincode</th>
@@ -195,11 +199,11 @@ const Form = () => {
                                     <label htmlFor="country" className="form-label">Country</label>
                                     <select className="form-select" {...register("country")}>
                                         <option value="">Select...</option>
-                                        <option value="india">India</option>
-                                        <option value="usa">USA</option>
-                                        <option value="australia">Australia</option>
-                                        <option value="canada">Canada</option>
-                                        <option value="germany">Germany</option>
+                                        <option value="India">India</option>
+                                        <option value="USA">USA</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="Germany">Germany</option>
                                     </select>
                                     {errors.country && <p className="text-danger">{errors.country.message}</p>}
                                 </div>

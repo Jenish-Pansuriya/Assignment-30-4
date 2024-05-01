@@ -64,16 +64,17 @@ const Managebeneficiary = () => {
     };
 
     const validation = (data) => {
+        let regex = /^[0-9,.]+$/
         let err = false
         if (!data.name) {
             setError('name', { type: 'manual', message: 'Please enter name.' });
             err = true
         }
-        if (!data.accountNo) {
-            setError('accountNo', { type: 'manual', message: 'Please enter account number.' });
-            err = true
-        } else if (data.accountNo < 1) {
+        if (!data.accountNo || data.accountNo < 1) {
             setError('accountNo', { type: 'manual', message: 'Please enter valid account number.' });
+            err = true
+        } else if (!regex.test(data.accountNo)) {
+            setError('accountNo', { type: 'manual', message: 'Please enter a valid account number without special characters.' });
             err = true
         }
         if (!data.bankName) {
@@ -220,7 +221,7 @@ const Managebeneficiary = () => {
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form onSubmit={handleSubmit(submit)}>
+                                <form onSubmit={handleSubmit(submit)} noValidate>
                                     <div className="mb-3">
                                         <label htmlFor="name" className="form-label">Name</label>
                                         <input type="text" placeholder="Please enter name" className="form-control" {...register('name')} />
@@ -240,8 +241,8 @@ const Managebeneficiary = () => {
                                         <label htmlFor="typeOfAccount" className="form-label">Type Of Account</label>
                                         <select className="form-select" {...register("typeOfAccount")}>
                                             <option value="">Select...</option>
-                                            <option value="saving">Saving</option>
-                                            <option value="current">Current</option>
+                                            <option value="Saving">Saving</option>
+                                            <option value="Current">Current</option>
                                         </select>
                                         {errors.typeOfAccount && <p className="text-danger">{errors.typeOfAccount.message}</p>}
                                     </div>
@@ -265,28 +266,6 @@ const Managebeneficiary = () => {
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            {/* <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="name" class="form-label">Name</label>
-                                        <p>{viewData?.name}</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="accountNo" class="form-label">Account Number</label>
-                                        <p>{viewData?.accountNo}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="bankName" class="form-label">Bank Name</label>
-                                        <p>{viewData?.bankName}</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="typeOfAccount" class="form-label">Type Of Account</label>
-                                        <p>{viewData?.typeOfAccount}</p>
-                                    </div>
-                                </div>
-                            </div> */}
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-6">
